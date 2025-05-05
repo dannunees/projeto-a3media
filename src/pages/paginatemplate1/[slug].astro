@@ -1,0 +1,134 @@
+---
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import html from "remark-html";
+import Disclaimer from "../../components/Disclaimer.astro";
+export async function getStaticPaths() {
+    const dir = path.resolve("content/paginatemplate1");
+    const files = fs.readdirSync(dir);
+
+    return files.map((file) => ({
+        params: { slug: file.replace(/\.md$/, "") },
+    }));
+}
+
+const { slug } = Astro.params;
+const filePath = path.resolve("content/paginatemplate1", `${slug}.md`);
+const markdownContent = fs.readFileSync(filePath, "utf-8");
+
+const { data, content } = matter(markdownContent);
+
+const htmlContent = await remark().use(html).process(content);
+const postContent = String(htmlContent);
+const {
+    titulo,
+    video_url,
+    button_text,
+    image_url,
+    subtitle_text,
+    button_text_last,
+} = data;
+---
+
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{titulo}</title>
+        <link rel="stylesheet" href="../src/styles/tailwind.css" />
+    </head>
+    <body>
+        <main>
+            <div class="max-w-3xl mx-auto px-4 py-8 text-center">
+                <section class="content-container">
+                    <div class="content">
+                        <div class="text-sm mb-1">
+                            {subtitle_text}
+                        </div>
+
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                            {titulo}
+                        </h1>
+
+                        <a
+                            href={video_url}
+                            class="mb-6 border border-gray-300 rounded-md overflow-hidden"
+                        >
+                            <div class="relative aspect-video mb-6">
+                                <img
+                                    src={image_url}
+                                    alt="Video placeholder"
+                                    class="w-full"
+                                />
+                            </div>
+                        </a>
+
+                        <a
+                            href={video_url}
+                            class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md mb-8"
+                        >
+                            {button_text}
+                        </a>
+
+                        <div
+                            set:html={postContent}
+                            class="text-left mb-8 markdown-content"
+                        />
+
+                        <a
+                            href={video_url}
+                            class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md mb-8"
+                        >
+                            {button_text_last}
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <Disclaimer />
+
+        <footer
+            class="border-t border-gray-200 py-4"
+            data-astro-cid-i7g7dgiq=""
+        >
+            <div class="max-w-3xl mx-auto px-4" data-astro-cid-i7g7dgiq="">
+                <div
+                    class="flex flex-wrap justify-center items-center gap-4"
+                    data-astro-cid-i7g7dgiq=""
+                >
+                    <a
+                        href="https://getflowempower.com/shipping?cmpid=67f7c3d6b760c2e063d74673&utm_campaign=&sub2=&sub3=&sub4=281655653257607&sub5=745273520608&sub6=281497399484329&sub7=c&sub8=&sub9=&sub10=&utm_source=Google&wbraid=&gbraid=&utm_medium=&utm_content=&ref_id="
+                        class="text-gray-600 hover:text-gray-900"
+                        data-astro-cid-i7g7dgiq=""
+                    >
+                        Shipping
+                    </a>
+                    <a
+                        href="https://getflowempower.com/contact?cmpid=67f7c3d6b760c2e063d74673&utm_campaign=&sub2=&sub3=&sub4=281655653257607&sub5=745273520608&sub6=281497399484329&sub7=c&sub8=&sub9=&sub10=&utm_source=Google&wbraid=&gbraid=&utm_medium=&utm_content=&ref_id="
+                        class="text-gray-600 hover:text-gray-900"
+                        data-astro-cid-i7g7dgiq=""
+                    >
+                        Contact
+                    </a>
+                    <a
+                        href="https://getflowempower.com/privacy-policy?cmpid=67f7c3d6b760c2e063d74673&utm_campaign=&sub2=&sub3=&sub4=281655653257607&sub5=745273520608&sub6=281497399484329&sub7=c&sub8=&sub9=&sub10=&utm_source=Google&wbraid=&gbraid=&utm_medium=&utm_content=&ref_id="
+                        class="text-gray-600 hover:text-gray-900"
+                        data-astro-cid-i7g7dgiq=""
+                    >
+                        Privacy Policy
+                    </a>
+                    <a
+                        href="https://getflowempower.com/terms-of-service?cmpid=67f7c3d6b760c2e063d74673&utm_campaign=&sub2=&sub3=&sub4=281655653257607&sub5=745273520608&sub6=281497399484329&sub7=c&sub8=&sub9=&sub10=&utm_source=Google&wbraid=&gbraid=&utm_medium=&utm_content=&ref_id="
+                        class="text-gray-600 hover:text-gray-900"
+                        data-astro-cid-i7g7dgiq=""
+                    >
+                        Terms Of Service
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+
+interface FooterLink {
+    label: string;
+    url: string;
+}
+
+const [footer] = await getCollection("footer");
+
+if (!footer || !footer.data || !footer.data.links) {
+    throw new Error(
+        'Erro: Coleção "footer" não encontrada ou não possui dados.',
+    );
+}
+
+const links: FooterLink[] = footer.data.links;
+---
+
+<footer class="border-t border-gray-200 py-4">
+    <div class="max-w-3xl mx-auto px-4">
+        <div class="flex flex-wrap justify-center items-center gap-4">
+            {
+                links.map((link: FooterLink) => (
+                    <a
+                        href={link.url}
+                        class="text-gray-600 hover:text-gray-900"
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</footer>

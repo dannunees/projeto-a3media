@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.markdown-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
