@@ -1,6 +1,6 @@
- <h3>🧪 A3 Media - Web Designer Teste</h3>
+ <h3>🧪 A3 Media - Teste Desenvolvedor Web Júnior</h3>
 
-Este projeto foi desenvolvido como parte do teste técnico para a vaga de Web Designer na A3 Media. O objetivo foi avaliar a capacidade de reprodução fiel de páginas web, criação de templates reutilizáveis, integração com CMS e automação de múltiplas páginas utilizando conteúdo dinâmico.
+Este projeto foi desenvolvido como parte do teste técnico para a vaga de Desenvolvedor Web Júnior na A3 Media. O objetivo foi avaliar a capacidade de reprodução fiel de páginas web, criação de templates reutilizáveis, integração com CMS e automação de múltiplas páginas utilizando conteúdo dinâmico.
 
  <h3>✅ Objetivo</h3>
 
