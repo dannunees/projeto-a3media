@@ -62,7 +62,9 @@ npm run dev
 ```
 
 4. Para acessar as páginas criadas:
+
 http://localhost:4321/paginatemplate1/1
+
 http://localhost:4321/paginatemplate2/1
 
 (para visualizar as outras páginas, basta mudar o número do slug na url, ex: http://localhost:4321/paginatemplate1/10 etc)
@@ -76,4 +78,5 @@ Edite conteúdo em tempo real via TinaCMS.
 Segue link das páginas publicadas na vercel tbm:
 
 https://projeto-a3media.vercel.app/paginatemplate1/1
+
 https://projeto-a3media.vercel.app/paginatemplate2/1
